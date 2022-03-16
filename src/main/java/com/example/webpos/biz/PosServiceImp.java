@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PosServiceImp implements PosService {
@@ -62,5 +63,12 @@ public class PosServiceImp implements PosService {
     @Override
     public List<Product> products() {
         return posDB.getProducts();
+    }
+
+    @Override
+    public void removeById(String pid) {
+        Product product = posDB.getProduct(pid);
+        if (product == null) return;
+        this.getCart().removeItemByProductId(pid);
     }
 }

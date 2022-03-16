@@ -20,4 +20,6 @@ public interface PosService {
 
 
     public List<Product> products();
+
+    void removeById(String pid);
 }

@@ -3,6 +3,7 @@ package com.example.webpos.model;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Data
@@ -32,5 +33,8 @@ public class Cart {
         stringBuilder.append("Total...\t\t\t" + total );
 
         return stringBuilder.toString();
+    }
+    public void removeItemByProductId(String id){
+        this.items.removeIf(item->item.getProduct().getId().equals(id));
     }
 }
