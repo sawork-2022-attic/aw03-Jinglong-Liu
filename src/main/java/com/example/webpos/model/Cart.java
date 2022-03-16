@@ -12,6 +12,12 @@ public class Cart {
     private List<Item> items = new ArrayList<>();
 
     public boolean addItem(Item item) {
+        for(Item it:items){
+            if(item.getProduct().getId().equals(it.getProduct().getId())){
+                it.increase(item.getQuantity());
+                return true;
+            }
+        }
         return items.add(item);
     }
 
@@ -36,5 +42,19 @@ public class Cart {
     }
     public void removeItemByProductId(String id){
         this.items.removeIf(item->item.getProduct().getId().equals(id));
+    }
+
+    public void decreaseItem(Item item) {
+        String pid = item.getProduct().getId();
+        Iterator<Item> iterator = items.iterator();
+        for(;iterator.hasNext();){
+            Item next = iterator.next();
+            if(pid.equals(next.getProduct().getId())){
+                next.decrease(item.getQuantity());
+                if(next.getQuantity() == 0){
+                    iterator.remove();
+                }
+            }
+        }
     }
 }

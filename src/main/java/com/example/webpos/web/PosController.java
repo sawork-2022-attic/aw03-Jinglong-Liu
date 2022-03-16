@@ -34,9 +34,23 @@ public class PosController {
         model.addAttribute("cart", posService.getCart());
         return "index";
     }
-    @GetMapping("/delete/{pid}")
-    public String delete(@PathVariable("pid")String pid,Model model){
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name="pid")String pid,Model model){
         posService.removeById(pid);
+        model.addAttribute("products", posService.products());
+        model.addAttribute("cart", posService.getCart());
+        return "index";
+    }
+    @GetMapping("/increase")
+    public String increase(@RequestParam(name = "pid")String pid,Model model){
+        posService.add(pid,1);
+        model.addAttribute("products", posService.products());
+        model.addAttribute("cart", posService.getCart());
+        return "index";
+    }
+    @GetMapping("/decrease")
+    public String decrease(@RequestParam(name = "pid")String pid,Model model){
+        posService.decrease(pid,1);
         model.addAttribute("products", posService.products());
         model.addAttribute("cart", posService.getCart());
         return "index";

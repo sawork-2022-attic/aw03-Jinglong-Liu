@@ -71,4 +71,12 @@ public class PosServiceImp implements PosService {
         if (product == null) return;
         this.getCart().removeItemByProductId(pid);
     }
+
+    @Override
+    public void decrease(String pid, int amount) {
+        Product product = posDB.getProduct(pid);
+        if (product == null) return;
+
+        this.getCart().decreaseItem(new Item(product, amount));
+    }
 }

@@ -152,24 +152,29 @@
 	</td>
 	<td class="text-center"> 
 		<div class="m-btn-group m-btn-group--pill btn-group mr-2" role="group" aria-label="...">
+            <a href="#" th:href="@{/decrease?pid={pid}(pid=${item.product.id})}">
 																		<button type="button"
                                                                                 class="m-btn btn btn-default"><i
                                                                                 class="fa fa-minus"></i></button>
+                </a>
 																		<button type="button"
                                                                                 class="m-btn btn btn-default"
-                                                                                disabled><span th:text="${item.quantity}"></span></button>
+                                                                                ><span th:text="${item.quantity}"></span></button>
+            <a href="#" th:href="@{/increase?pid={pid}(pid=${item.product.id})}">
 																		<button type="button"
                                                                                 class="m-btn btn btn-default"><i
                                                                                 class="fa fa-plus"></i></button>
+            </a>
 																	</div>
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price"><span th:text="${item.product.price}"></span></var>
+			<var class="price"><span th:text="${item.product.price * item.quantity}"></span></var>
 		</div> <!-- price-wrap .// -->
 	</td>
+    <!--delete-->
 	<td class="text-right"> 
-	<a href="#" th:href="@{/delete/{productId}(productId=${item.product.id})}" class="btn btn-outline-danger"> <i class="fa fa-trash"></i></a>
+	<a href="#" th:href="@{/delete?pid={productId}(productId=${item.product.id})}" class="btn btn-outline-danger"> <i class="fa fa-trash"></i></a>
 	</td>
 </tr>
 </tbody>

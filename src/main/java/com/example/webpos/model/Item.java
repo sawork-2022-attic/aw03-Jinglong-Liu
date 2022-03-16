@@ -13,4 +13,12 @@ public class Item {
     public String toString(){
         return product.toString() +"\t" + quantity;
     }
+    public int increase(int amount){
+        quantity += amount;
+        return quantity;
+    }
+    public int decrease(int amount){
+        quantity -= amount;
+        return quantity;
+    }
 }
